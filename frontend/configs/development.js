@@ -41,14 +41,14 @@ module.exports = {
     },
 
     resolve: {
-        extensions: ['.ts', '.js', '.json', '.css', '.scss'],
+        extensions: ['.ts', '.tsx', '.js', '.json', '.css', '.scss'],
         alias: alias.getFromTsConfig()
     },
 
     module: {
         rules: [
             {
-                test: /\.ts$/,
+                test: /\.tsx?$/,
                 loader: 'ts-loader',
                 options: {
                     context: appSettings.context,
@@ -92,6 +92,11 @@ module.exports = {
             }
         ]
     },
+
+    // externals: {
+    //     'react': 'React',
+    //     'react-dom': 'ReactDOM'
+    // },
 
     optimization: {
         runtimeChunk: 'single',
