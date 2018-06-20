@@ -1,18 +1,23 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
-export interface HelloProps {
+export interface Props {
+    name: string
+    url: string
     compiler: string
     framework: string
 }
 
-export const Hello = (props: HelloProps) => <strong>Hello from {props.compiler} and {props.framework}!</strong>;
+export const ColorSelector = (props: Props) =>
+    <a
+        className={`${props.name}__color js-${props.name}__color`}>
+    </a>;
 
 const elements: Element[] = Array.from(document.getElementsByTagName('color-selector'));
 
 elements.forEach((element: Element) => {
     ReactDOM.render(
-        <Hello compiler="TypeScript" framework="React" />,
+        <ColorSelector name="color-selector" url={element.getAttribute('')} compiler="TypeScript" framework="React" />,
         element
     );
 });

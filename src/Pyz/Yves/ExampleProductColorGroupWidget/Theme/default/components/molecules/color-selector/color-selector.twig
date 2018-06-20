@@ -5,7 +5,7 @@
     tag: 'color-selector'
 } %}
 
-{# {% define data = {
+{% define data = {
     items: required
 } %}
 
@@ -20,7 +20,7 @@
 {% endblock %}
 
 {% block body %}
-    {% for item in data.items %}
+    {# {% for item in data.items %}
         {% set image = item.images is defined ? item.images | first : null %}
         <a
             class="{{config.name}}__color {% if loop.first %}{{config.name}}__color--active{% endif %} {{config.jsName}}__color"
@@ -28,5 +28,5 @@
             data-image-src="{{ image ? image.externalUrlSmall : '' }}"
             {% if item.colorCode %}style="background-color:{{ item.colorCode }};"{% endif %}>
         </a>
-    {% endfor %}
-{% endblock %} #}
+    {% endfor %} #}
+{% endblock %}

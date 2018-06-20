@@ -30,6 +30,10 @@ module.exports = {
             path.join(appSettings.context, appSettings.paths.project.shopUiModule, './styles/basic.scss'),
             ...finder.findComponentEntryPoints(),
             path.join(appSettings.context, appSettings.paths.project.shopUiModule, './styles/util.scss')
+        ],
+        'test': [
+            path.join(appSettings.context, './frontend/app/index.js'),
+            path.join(appSettings.context, './frontend/app/style.scss')
         ]
     },
 
