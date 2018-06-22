@@ -1,3 +1,3 @@
-abstract_sku,concrete_sku,price_type,store,currency,value_net,value_gross,company
-001,,DEFAULT,DE,EUR,499,599,
-002,,DEFAULT,DE,EUR,499,599,
+abstract_sku,concrete_sku,price_type,store,currency,value_net,value_gross
+001,,DEFAULT,DE,EUR,399,499
+002,,DEFAULT,DE,EUR,499,599
