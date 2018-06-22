@@ -134,13 +134,6 @@ class DataImportDependencyProvider extends SprykerDataImportDependencyProvider
             new CompanyUnitAddressDataImportPlugin(),
             new CompanyUnitAddressLabelDataImportPlugin(),
             new CompanyUnitAddressLabelRelationDataImportPlugin(),
-            new ProductMeasurementUnitDataImportPlugin(),
-            new ProductMeasurementBaseUnitDataImportPlugin(),
-            new ProductMeasurementSalesUnitDataImportPlugin(),
-            new ProductMeasurementSalesUnitStoreDataImportPlugin(),
-            new ProductQuantityDataImportPlugin(),
-            new ProductPackagingUnitTypeDataImportPlugin(),
-            new ProductPackagingUnitDataImportPlugin(),
             new BusinessOnBehalfCompanyUserDataImportPlugin(),
         ];
     }
