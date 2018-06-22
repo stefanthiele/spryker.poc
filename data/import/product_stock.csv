@@ -1,5 +1,5 @@
 concrete_sku,name,quantity,is_never_out_of_stock,is_bundle
-001_001,Warehouse1,10,1,0
-001_002,Warehouse1,10,1,0
-002_001,Warehouse1,10,1,0
+001_001,Warehouse1,10,0,0
+001_002,Warehouse1,0,1,0
+002_001,Warehouse1,10,0,0
 002_002,Warehouse1,10,1,0

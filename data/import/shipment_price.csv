@@ -1,5 +1,4 @@
 shipment_method_key,store,currency,value_net,value_gross
-spryker_same_minute_shipment,DE,EUR,599,599
-spryker_same_minute_shipment,DE,CHF,599,599
-spryker_same_minute_shipment,AT,EUR,599,599
-spryker_same_minute_shipment,AT,CHF,599,599
+spryker_same_minute_shipment,DE,EUR,0,0
+spryker_same_minute_shipment,US,EUR,0,0
+spryker_same_minute_shipment,AT,EUR,0,0

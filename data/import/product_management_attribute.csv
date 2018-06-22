@@ -1,2 +1,4 @@
 key,input_type,allow_input,is_multiple,values,key_translation.en_US,key_translation.de_DE,value_translations.en_US,value_translations.de_DE
-variant,text,no,no,"salty,sweet,cheese,salsa",variant,variant,,
+title,text,yes,no,,Title,Title,,
+description,text,yes,no,,Description,Description,,
+variant,text,no,no,"salty,sweet,cheese,salsa",Variant,Variant,,

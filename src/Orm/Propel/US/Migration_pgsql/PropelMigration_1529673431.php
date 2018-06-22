@@ -4,10 +4,10 @@ use Propel\Generator\Manager\MigrationManager;
 
 /**
  * Data object containing the SQL and PHP code to migrate the database
- * up to version 1529657582.
- * Generated on 2018-06-22 08:53:02 by vagrant
+ * up to version 1529673431.
+ * Generated on 2018-06-22 13:17:11 by vagrant
  */
-class PropelMigration_1529657582
+class PropelMigration_1529673431
 {
     public $comment = '';
 
