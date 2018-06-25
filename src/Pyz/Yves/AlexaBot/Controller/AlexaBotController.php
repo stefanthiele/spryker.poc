@@ -7,7 +7,7 @@
 
 namespace Pyz\Yves\AlexaBot\Controller;
 
-use Pyz\Yves\Application\Controller\AbstractController;
+use Spryker\Yves\Kernel\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 

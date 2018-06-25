@@ -7,6 +7,7 @@
 
 namespace Pyz\Yves\ShopApplication;
 
+use Pyz\Yves\AlexaBot\Plugin\Provider\AlexaBotControllerProvider;
 use Pyz\Yves\ExampleProductSalePage\Plugin\Provider\ExampleProductSaleControllerProvider;
 use Silex\Provider\FormServiceProvider;
 use Silex\Provider\HttpFragmentServiceProvider;
@@ -204,6 +205,7 @@ class YvesBootstrap extends SprykerYvesBootstrap
             new CartToShoppingListWidgetControllerProvider($isSsl), #ShoppingListFeature
             new ShoppingListWidgetControllerProvider($isSsl), #ShoppingListFeature
             new CompanyUserInvitationPageControllerProvider($isSsl), #BulkImportCompanyUserInvitationsFeature
+            new AlexaBotControllerProvider($isSsl),
         ];
     }
 }
