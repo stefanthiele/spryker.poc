@@ -38,7 +38,6 @@ class StringReader
         $helloSprykerTransfer = new HelloSprykerTransfer();
         $helloSprykerTransfer->setReversedString($helloSprykerEntity->getReversedString());
 
-
         return $helloSprykerTransfer;
     }
 }
