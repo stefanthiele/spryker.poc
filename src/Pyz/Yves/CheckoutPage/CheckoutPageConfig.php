@@ -7,9 +7,9 @@
 
 namespace Pyz\Yves\CheckoutPage;
 
-use SprykerShop\Yves\CheckoutPage\CheckoutPageConfig as SprykerCheckoutPageConfig;
+use SprykerShop\Yves\CheckoutPage\CheckoutPageConfig as SprykerShopCheckoutPageConfig;
 
-class CheckoutPageConfig extends SprykerCheckoutPageConfig
+class CheckoutPageConfig extends SprykerShopCheckoutPageConfig
 {
     /**
      * @return bool
