@@ -3,7 +3,7 @@
 {% define data = {
     backUrl: _view.previousStepUrl,
     forms: {
-        shipment: _view.voucherForm
+        voucher: _view.voucherForm
     },
 
     title: 'Voucher' | trans
@@ -21,7 +21,7 @@
             },
             submit: {
                 enable: true,
-                text: 'Go to summary' | trans
+                text: 'checkout.step.summary' | trans
             },
             cancel: {
                 enable: true,
