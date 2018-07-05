@@ -31,8 +31,17 @@ the include is called with 2 arguments:
 
 data object must be respect the contract defined into the object
 attributes object is optional, but it has to respect the mandatory attributes, whether defined
+
+--
+the class variable is used to inject custom classnames into the component tag
+modifiers array is used to enable component modifiers (defined into new-component-couter.scss)
+
+with these 2 variabled, you can actually manipolate the component style without knowing its actual
+internal implementation, enforcing atomicity
 #}
 {% include molecule('new-component-counter') with {
+    class: 'custom-classname',
+    modifiers: ['big'],
     data: {
         name: 'Looking for a tags',
         description: 'How many links are in this page?'
@@ -51,8 +60,19 @@ whether needed
 
 in the first case, we're extending the body block by appending some message after it
 th the second case, we're overwriting the counter block by removing some unneeded text
+
+let's focus on the embed property in the context
+as you can see, I'm adding a property (message) that was not defined in the data (not part of the contract)
+but that is somehow usefule for my implementation
+
+i cannot add message to data as it's not defined in contract
+i cannot add message to attributes as i do not want to render it as an html attribute
+therefore i'm addin it to a dedicated variabled designed to enrich a context in embedding situations, like this
+this also make clearer where each variable used in the html is coming from
 #}
 {% embed molecule('new-component-counter') with {
+    class: 'custom-classname',
+    modifiers: ['big'],
     data: {
         name: 'Looking for a tags',
         description: 'How many links are in this page?'

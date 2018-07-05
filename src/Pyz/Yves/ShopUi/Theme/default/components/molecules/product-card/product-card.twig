@@ -1,3 +1,18 @@
+{#
+this is a real working example of an extend component
+
+the goal here is to change a component implementation
+whenever this component is used, the new implementation will be used
+#}
+
+{#
+forst of all, to extend a component in twig is necessary to replicate the exact folder structure
+that we have in spryker-shop ShopUi module
+this way, the twig loader will pick this teplate intead of the default one
+
+right now, to extend a component twig file, you need to own the code, that means copy the original code
+(just for twig) and paste it here
+#}
 {% extends molecule('card') %}
 
 {% define config = {
@@ -14,6 +29,9 @@
     originalPrice: null
 } %}
 
+{#
+this product-card code is the same as the original one, except for this following image
+#}
 {% block image %}
     <a href="{{data.url}}">
         {% include atom('thumbnail') with {

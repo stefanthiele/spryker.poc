@@ -1,0 +1,28 @@
+{#
+extend the original twig file
+#}
+{% extends organism('side-drawer') %}
+
+{#
+customise the name and the tag (in order to have a new component)
+#}
+{% define config = {
+    name: 'new-existing-component-side-drawer',
+    tag: 'new-existing-component-side-drawer'
+} %}
+
+{#
+customise the html
+#}
+{% block close %}
+    <div class="{{config.name}}__close">
+        <a href="#" class="link link--alt {{attributes['trigger-selector']}}">
+            {{'global.close' | trans}}
+            {% include atom('icon') with {
+                data: {
+                    name: 'star'
+                }
+            } only %}
+        </a>
+    </div>
+{% endblock %}

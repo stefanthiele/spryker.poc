@@ -1,0 +1,8 @@
+// extend the style using the shared mixin for the style
+// by not passing the name, the style will be using the original one (simple-carousel)
+
+// if you want to replace the style, just remove the mixin and add your own style
+
+@include shop-ui-simple-carousel {
+    color: $setting-color-alt;
+}

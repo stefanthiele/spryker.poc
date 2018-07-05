@@ -1,0 +1,150 @@
+{#
+this is an example
+
+HOW A COMPONENT WORKS
+#}
+
+{#
+ #
+ #
+ # Component API
+ # the following code is a copy from
+ # vendor/spryker-shop/shop-ui/src/SprykerShop/Yves/ShopUi/Theme/default/models/component.twig
+ #}
+
+{#
+config variable: it contains the base component information:
+
+- name: defines the component’s name; it will be used as the main classname block too,
+therefore element and modifiers will have name as base;
+
+- jsName: defines the component’s javascript name; by convention, whenever javascript behaviour is added to the component,
+the DOM addressing for elements should be performed using dedicated classnames starting with the prefix “js-”.
+This prevents confusion in who-does-what: a classname starting with “js-” will have no style attached to it,
+but only javascript behaviour. On the other hand, any classname that does not start with ”js-” will be pure style.
+The jsName is defined automatically by prefing “js-” to the component’s name.
+
+- tag: defines the html component’s tagname. every component is an html tag, therefore we must define what tagname to use.
+A standard hrml5 tagname can be used (div is default) or a custom element tagname might be enforced in order to attach javascript behaviour.
+It’s rellay important to understand that, in order to create a javascript based component, you need to create a custom element
+(see webcomponents specifications).
+#}
+{%- define config = {
+    name: required,
+    jsName: 'js-' ~ config.name,
+    tag: 'div'
+} -%}
+
+{#
+data variable: defines the data contract for the component.
+It’s really important to define the data as it represent the data model expected by the component as input.
+Properties used in the contract should be of primitive type whenever possible
+(strings, numbers - avoid complex objects as a change is that object might lead to a broken component outside the contract itself).
+A property defined in the data variable can be required, as it’s mandatory input, or optional with a default value,
+as if not passed the default value will be adopted.
+#}
+{%- define data = {} -%}
+
+{#
+embed variable: defines a list of variables that a component might receive from the context,
+specifically to be used during twig embedding usages.
+#}
+{%- define embed = {} -%}
+
+{#
+qa variable: used to customise the qa html tag (useful for testing)
+#}
+{%- set qa = qa | default('') -%}
+
+{#
+class variable: defines external classnames that a component might receive from the context.
+#}
+{%- set class = class | default('') -%}
+
+{#
+modifiers array: defines a list of modifiers to apply to the main blockthat a component might receive from the context.
+#}
+{%- define modifiers = [] -%}
+
+{#
+attributes variable: defines the component’s html5 attributes;
+they will be rendered in the component’s tag if not null or false.
+An attribute defined in the attributes variable can be required,
+as it’s mandatory input, or optional with a default value,
+as if not passed the default value will be adopted.
+#}
+{%- define attributes = {} -%}
+
+{#
+renderClass: renders the classnames for the component, according to BEM specifications:
+- name (defined in config variable),
+- modifiers (if passed in their specific variable)
+- extra: external classnames (if passed in their specific variable).
+#}
+{% macro renderClass(name, modifiers, extra) %}
+    {{-name | trim-}}
+    {%- for modifier in modifiers -%}{%- if modifier | trim is not empty %} {{name}}--{{modifier | trim}}{% endif -%}{% endfor -%}
+    {%- if extra %} {{extra-}}{% endif -%}
+{%- endmacro -%}
+
+{#
+renderAttributes: renders the html5 attributes defined their related variable.
+#}
+{% macro renderAttributes(attributes) %}
+    {%- for name, value in attributes -%}
+        {%- if value is sameas(true) -%}
+            {{-' ' ~ name-}}
+        {%- elseif value is not sameas(false) -%}
+            {{-' ' ~ name-}}='{{-value-}}'
+        {%- endif -%}
+    {%- endfor -%}
+{%- endmacro -%}
+
+{#
+make macros available in the current file as component.macroName
+#}
+{% import _self as component %}
+
+{#
+component implementation
+this is the part that renders the component into html
+#}
+{% block component %}
+    {# component is rendered within the tag defined in the config #}
+    <{{-config.tag}} class="
+        {# if component is a webcomponent (name=tag and "-" is in the name), a `custom-element` reset class is applied #}
+        {%- if config.name == config.tag and '-' in config.tag -%}custom-element {% endif -%}
+
+        {# defines the block in which the classnames are rendered #}
+        {%- block class -%}
+            {{- component.renderClass(config.name, modifiers, class) -}}
+        {%- endblock -%}"
+
+        {# renders the data-qa="..." attribute for test pureposes #}
+        {{qa(
+            'component',
+            config.name,
+            attributes.name | default,
+            attributes.id | default,
+            qa
+        )}}
+
+        {# defines the block in which html attributes are rendered #}
+        {%- block attributes -%}
+            {{- component.renderAttributes(attributes) -}}
+         {%- endblock -%}>  {# close opening tag #}
+
+            {# defines the body block for the component, containing the actual implementation #}
+            {%- block body -%}{%- endblock -%}
+    </{{-config.tag-}}> {# closing tag #}
+{% endblock -%}
+
+{#
+by including thei file in twig:
+- styles are applied automatically as the componen is rendered with classnames
+- typescript is executed whenever a webcomponent is rendered in the dom
+and whenever the tagname of a specific twig files matches with the tagname specified into the index.ts register() function
+
+--
+styles ans typescript are optional
+#}

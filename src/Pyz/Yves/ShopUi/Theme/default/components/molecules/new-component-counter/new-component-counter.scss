@@ -16,4 +16,8 @@
     &__counter {
         color: $setting-color-alt;
     }
+
+    &--big {
+        @include helper-font-size(big);
+    }
 }

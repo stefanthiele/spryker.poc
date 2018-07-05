@@ -1,0 +1,15 @@
+// this is how you can extend a style
+// by passing a name to the specific mixing, you're rendering block, elements and modifiers
+// with the new block classname
+// then you can extend the style as follows:
+
+@include shop-ui-side-drawer('.new-existing-component-side-drawer') {
+    color: $setting-color-alt;
+
+    &__overlay {
+        background-color: $setting-color-main;
+    }
+}
+
+// evert mixin included in SprykerShop ShopUi module is shared, therefore globally accessible
+// from every scss

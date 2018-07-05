@@ -8,7 +8,8 @@
     {% endblock %}
 
     {% block sidebar %}
-        {% include organism('side-drawer') with {
+        {# using a new component based on an existing one #}
+        {% include organism('new-existing-component-side-drawer') with {
             class: 'is-hidden-lg-xl',
             attributes: {
                 'container-selector': 'js-page-layout-main__side-drawer-container',
@@ -50,7 +51,9 @@
         {% endblock %}
 
         <main>
+            {# using a new component #}
             {% include molecule('new-component-counter') with {
+                modifiers: ['big'],
                 data: {
                     name: 'Looking for a tags',
                     description: 'How many links are in this page?'
