@@ -1,0 +1,75 @@
+{#
+this file is an example
+
+HOW TO USE A COMPONENT
+#}
+
+{#
+include
+
+you can use a component by including it into another twig file
+in order to easily accedd a component, you can rely on helpers functions:
+- atom(name, module)
+- molecule(name, module)
+- organism(name, module)
+
+all these functions work the same way:
+name (mandatory): arg for the component name
+module (optional): arg for the spryker module (if null, then ShopUi is used by default)
+
+@return
+this function `molecule('new-component-counter')` returns a string in the format:
+@ShopUi/components/molecules/new-component-counter/new-component-counter.twig
+
+this function `organism('some-name', 'CartPage')` returns a string in the format:
+@CartPage/components/organisms/some-name/some-name.twig
+
+--
+the include is called with 2 arguments:
+- with {}: it defines the context to pass to the component twig file
+- only: VERY IMPORTANT - it closes the context to ONLY the object passed using `with {}`
+
+data object must be respect the contract defined into the object
+attributes object is optional, but it has to respect the mandatory attributes, whether defined
+#}
+{% include molecule('new-component-counter') with {
+    data: {
+        name: 'Looking for a tags',
+        description: 'How many links are in this page?'
+    },
+    attributes: {
+        'element-selector': 'a'
+    }
+} only %}
+
+{#
+embed
+
+you can use a component by embedding it
+this allows you to extend or change the blocks defined into the component
+whether needed
+
+in the first case, we're extending the body block by appending some message after it
+th the second case, we're overwriting the counter block by removing some unneeded text
+#}
+{% embed molecule('new-component-counter') with {
+    data: {
+        name: 'Looking for a tags',
+        description: 'How many links are in this page?'
+    },
+    attributes: {
+        'element-selector': 'a'
+    },
+    embed: {
+        message: 'Woohoo!'
+    }
+} only %}
+    {% block body %}
+        {{parent()}}
+        {{embed.message}}
+    {% endblock %}
+
+    {% block counter %}
+        <strong class="{{config.name}}__counter {{config.jsName}}__counter"></strong>
+    {% endblock %}
+{% endembed %}

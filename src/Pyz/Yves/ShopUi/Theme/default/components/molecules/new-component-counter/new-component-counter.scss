@@ -1,0 +1,19 @@
+// this is a siple scss file
+// use the classname (is the same as the component name by convention) to add styles
+// use BEM methodology (https://en.bem.info/methodology/css/)
+// this file is included in the output in the index.ts
+
+.new-component-counter {
+    &__name {
+        display: block;
+    }
+
+    &__description {
+        display: block;
+        color: $setting-color-dark;
+    }
+
+    &__counter {
+        color: $setting-color-alt;
+    }
+}

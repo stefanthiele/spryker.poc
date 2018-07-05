@@ -1,0 +1,91 @@
+{#
+this is the twig file for the component
+a twig file always extends a model or another component:
+
+- atoms, molecules and organisms extend model `component`
+{% extends model('component') %}
+
+- templates and views extend model `template`
+{% extends model('template') %}
+
+in both cases, you may want to extend an already existing component o template.
+examples:
+
+- radio atom extends checkbox atom
+{% extends atom('checkbox') %}
+
+- a widget view always extends a widget template
+{% extends template('widget') %}
+#}
+
+{% extends model('component') %}
+
+{#
+this is the config object, and it defines the main property for the component
+name: the name (classname) for the component
+tag: the tagname for the component
+
+it also defines the jsName automatically
+jsName: a classname specifically designed for javascript access (.js-classname)
+
+by convention:
+- styles always access `{{config.name}}__element` classes
+- javascript always accesses `{{config.jsName}}__element` classes
+
+this enforce separation between classes used for styles and for behaviour
+making clear who-does-what, and where to look for implementation
+#}
+{% define config = {
+    name: 'new-component-counter',
+    tag: 'new-component-counter'
+} %}
+
+{#
+this is the data object, alse called contract
+it defines the properties (data) required by this twig file to properly function
+properties can be:
+
+- mandatory (name: required)
+this is a custom keyword defined in Spryker twig extension
+when a property is marked as required, it must be passed in the twig context
+if not, twig is gonna throw an exception
+
+- optional (description: 'no description')
+this property is optional as it has a default value ('no description')
+if not passed in the context, the default value will be adopted
+
+there cannot be undefined properties in the contract; they can be either required or with a default value
+#}
+{% define data = {
+    name: required,
+    description: 'no description'
+} %}
+
+{#
+this is the attributes object
+it defines an optional list of html attributes that are gonna be redered in the component opening tag
+attributes work the same way as the properties in data object
+they can be mandatory or optional, following the same rules of definition
+#}
+{% define attributes = {
+    'element-selector': required
+} %}
+
+{#
+this is the body block of the component
+this contains the html implementation of the component
+it can access every variable/object defined above
+#}
+{% block body %}
+    {% spaceless %}
+        <strong class="{{config.name}}__name">
+            {{data.name}}
+        </strong>
+        <em class="{{config.name}}__description">
+            {% if data.description is not empty %}{{data.description}}{% endif %}
+        </em>
+        {% block counter %}
+            Found <strong class="{{config.name}}__counter {{config.jsName}}__counter"></strong> elements
+        {% endblock %}
+    {% endspaceless %}
+{% endblock %}
