@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "b4aff3c56e4e0c2f042258ed0635390a",
+    "content-hash": "91f5377cb230652daa3f9badc08ba89d",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -2076,6 +2076,61 @@
             ],
             "description": "Loggly module",
             "time": "2018-04-24T10:34:44+00:00"
+        },
+        {
+            "name": "spryker-eco/payone",
+            "version": "1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spryker-eco/payone.git",
+                "reference": "fb7144c23af5a9731938c8cb034618881529f796"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spryker-eco/payone/zipball/fb7144c23af5a9731938c8cb034618881529f796",
+                "reference": "fb7144c23af5a9731938c8cb034618881529f796",
+                "shasum": ""
+            },
+            "require": {
+                "spryker/config": "^3.0.0",
+                "spryker/guzzle": "^2.1.0",
+                "spryker/kernel": "^3.0.0",
+                "spryker/oms": "^6.0.0 || ^7.0.0 || ^8.0.0",
+                "spryker/propel-orm": "^1.0.0",
+                "spryker/refund": "^4.0.0 || ^5.0.0",
+                "spryker/sales": "^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0",
+                "spryker/step-engine": "^3.0.0",
+                "spryker/symfony": "^3.0.0"
+            },
+            "replace": {
+                "spryker/payone": "*"
+            },
+            "require-dev": {
+                "spryker/code-sniffer": "*",
+                "spryker/propel": "*",
+                "spryker/silex": "*",
+                "spryker/testify": "*"
+            },
+            "suggest": {
+                "spryker/checkout": "If you want to use Checkout plugins you need to install spryker/checkout."
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "SprykerEco\\": "src/SprykerEco/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "proprietary"
+            ],
+            "description": "Payone module",
+            "time": "2018-04-23T10:37:27+00:00"
         },
         {
             "name": "spryker-shop/availability-widget",
