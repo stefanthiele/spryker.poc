@@ -1,3 +1,9 @@
+// this file extends core ShopUi/styles/util file
+// and it contains the utils classes for the project, like
+// spacing system, text helpers, float-right and left, is-hidden implementations
+
+// add your own utilities classes here
+
 @import '~ShopUi/styles/util';
 
 @include util-spacing;

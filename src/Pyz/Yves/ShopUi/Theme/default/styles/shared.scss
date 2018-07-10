@@ -1,1 +1,10 @@
+// thi file extends the core ShopUi/styles/shared scss file
+// it contains the sass variables, functions and mixins that are used in the system
+
+// IMPORTANT: every resourse you add here will be shared across every sass file in this project
+
+// this is important to understand in order to properly include resources here
+// use this file to overwrite existing variables (ie. $setting-color-main for the main color in the site)
+// or to add new global shared variables, functions or mixins
+
 @import '~ShopUi/styles/shared';

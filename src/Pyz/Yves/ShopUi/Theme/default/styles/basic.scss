@@ -1,3 +1,11 @@
+// this file extends core ShopUi/styles/basic file
+// and contains the basic layout styles
+// like html reset, basic typography, grid systems and animations
+// this file caontains the fundamentals for every component and utility
+
+// add you fundamentals here
+// or remove some of the one provided below
+
 @import '~ShopUi/styles/basic';
 
 @include basic-reset;
