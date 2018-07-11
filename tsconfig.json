@@ -9,7 +9,8 @@
             "ShopUi/*": [
                 "./vendor/spryker-shop/shop-ui/src/SprykerShop/Yves/ShopUi/Theme/default/*"
             ]
-        }
+        },
+        "allowJs": true
     },
     "files": [
         "./src/Pyz/Yves/ShopUi/Theme/default/app.ts",

@@ -10,6 +10,12 @@ const paths = {
     ui: {
         shop: `./vendor/spryker-shop/shop-ui/src/SprykerShop/Yves/ShopUi/Theme/${theme}`,
         project: `./src/Pyz/Yves/ShopUi/Theme/${theme}`
+    },
+
+    // Eco folders
+    eco: {
+        // all modules
+        modules: './vendor/spryker-eco/'
     }
 };
 
@@ -31,7 +37,9 @@ module.exports = {
     find: {
         componentEntryPoints: {
             dirs: [
-                path.join(context, paths.shop)
+                path.join(context, paths.shop),
+                path.join(context, paths.eco.modules)
+
             ],
             patterns: [
                 `**/Theme/${theme}/components/atoms/*/index.ts`,
