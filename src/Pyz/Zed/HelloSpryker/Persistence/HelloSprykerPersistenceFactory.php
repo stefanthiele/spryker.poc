@@ -9,10 +9,13 @@ namespace Pyz\Zed\HelloSpryker\Persistence;
 use Orm\Zed\HelloSpryker\Persistence\PyzHelloSprykerQuery;
 use Spryker\Zed\Kernel\Persistence\AbstractPersistenceFactory;
 
+/**
+ * @method \Pyz\Zed\HelloSpryker\Persistence\HelloSprykerQueryContainer getQueryContainer()
+ */
 class HelloSprykerPersistenceFactory extends AbstractPersistenceFactory
 {
     /**
-     * @return PyzHelloSprykerQuery
+     * @return \Orm\Zed\HelloSpryker\Persistence\PyzHelloSprykerQuery
      */
     public function createHelloSprykerQuery()
     {

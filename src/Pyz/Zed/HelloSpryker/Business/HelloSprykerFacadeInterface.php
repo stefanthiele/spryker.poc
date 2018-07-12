@@ -12,16 +12,16 @@ use Generated\Shared\Transfer\HelloSprykerTransfer;
 interface HelloSprykerFacadeInterface
 {
     /**
-     * @param HelloSprykerTransfer $helloSprykerTransfer
+     * @param \Generated\Shared\Transfer\HelloSprykerTransfer $helloSprykerTransfer
      *
-     * @return HelloSprykerTransfer
+     * @return \Generated\Shared\Transfer\HelloSprykerTransfer
      */
     public function reverseString(HelloSprykerTransfer $helloSprykerTransfer);
 
     /**
      * @param int $id
      *
-     * @return HelloSprykerTransfer
+     * @return \Generated\Shared\Transfer\HelloSprykerTransfer
      */
     public function readString($id);
 }

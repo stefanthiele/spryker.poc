@@ -15,9 +15,9 @@ use Spryker\Zed\Kernel\Communication\Controller\AbstractGatewayController;
 class GatewayController extends AbstractGatewayController
 {
     /**
-     * @param HelloSprykerTransfer $helloSprykerTransfer
+     * @param \Generated\Shared\Transfer\HelloSprykerTransfer $helloSprykerTransfer
      *
-     * @return HelloSprykerTransfer
+     * @return \Generated\Shared\Transfer\HelloSprykerTransfer
      */
     public function reverseStringAction(HelloSprykerTransfer $helloSprykerTransfer)
     {

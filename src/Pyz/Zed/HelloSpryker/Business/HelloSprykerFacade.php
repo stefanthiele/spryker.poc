@@ -16,11 +16,9 @@ use Spryker\Zed\Kernel\Business\AbstractFacade;
 class HelloSprykerFacade extends AbstractFacade implements HelloSprykerFacadeInterface
 {
     /**
-     * @param HelloSprykerTransfer $helloSprykerTransfer
+     * @param \Generated\Shared\Transfer\HelloSprykerTransfer $helloSprykerTransfer
      *
-     * @throws \Propel\Runtime\Exception\PropelException
-     *
-     * @return HelloSprykerTransfer
+     * @return \Generated\Shared\Transfer\HelloSprykerTransfer
      */
     public function reverseString(HelloSprykerTransfer $helloSprykerTransfer)
     {
@@ -32,7 +30,7 @@ class HelloSprykerFacade extends AbstractFacade implements HelloSprykerFacadeInt
     /**
      * @param int $id
      *
-     * @return HelloSprykerTransfer
+     * @return \Generated\Shared\Transfer\HelloSprykerTransfer
      */
     public function readString($id)
     {

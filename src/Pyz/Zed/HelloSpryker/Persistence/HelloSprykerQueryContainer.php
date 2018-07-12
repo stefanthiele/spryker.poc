@@ -16,8 +16,6 @@ class HelloSprykerQueryContainer extends AbstractQueryContainer implements Hello
     /**
      * @param $idHelloSpryker
      *
-     * @throws \Spryker\Zed\Propel\Business\Exception\AmbiguousComparisonException
-     *
      * @return \Orm\Zed\HelloSpryker\Persistence\PyzHelloSprykerQuery
      */
     public function queryHelloSprykerById($idHelloSpryker)

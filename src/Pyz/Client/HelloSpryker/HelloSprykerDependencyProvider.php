@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * This file is part of the Spryker Suite.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
+ */
+
 namespace Pyz\Client\HelloSpryker;
 
 use Spryker\Client\Kernel\AbstractDependencyProvider;
@@ -7,7 +12,6 @@ use Spryker\Client\Kernel\Container;
 
 class HelloSprykerDependencyProvider extends AbstractDependencyProvider
 {
-
     const CLIENT_ZED_REQUEST = 'CLIENT_ZED_REQUEST';
 
     /**
@@ -35,5 +39,4 @@ class HelloSprykerDependencyProvider extends AbstractDependencyProvider
 
         return $container;
     }
-
 }

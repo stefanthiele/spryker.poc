@@ -12,12 +12,12 @@ use Pyz\Zed\HelloSpryker\Persistence\HelloSprykerQueryContainerInterface;
 class StringReader
 {
     /**
-     * @var HelloSprykerQueryContainerInterface
+     * @var \Pyz\Zed\HelloSpryker\Persistence\HelloSprykerQueryContainerInterface
      */
     private $helloSprykerQueryContainer;
 
     /**
-     * @param HelloSprykerQueryContainerInterface $helloSprykerQueryContainer
+     * @param \Pyz\Zed\HelloSpryker\Persistence\HelloSprykerQueryContainerInterface $helloSprykerQueryContainer
      */
     public function __construct(HelloSprykerQueryContainerInterface $helloSprykerQueryContainer)
     {
@@ -27,7 +27,7 @@ class StringReader
     /**
      * @param int $id
      *
-     * @return HelloSprykerTransfer
+     * @return \Generated\Shared\Transfer\HelloSprykerTransfer
      */
     public function readString($id)
     {

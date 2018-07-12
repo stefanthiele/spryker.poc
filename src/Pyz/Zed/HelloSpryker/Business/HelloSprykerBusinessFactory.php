@@ -10,7 +10,6 @@ namespace Pyz\Zed\HelloSpryker\Business;
 use Pyz\Zed\HelloSpryker\Business\Model\StringReader;
 use Pyz\Zed\HelloSpryker\Business\Model\StringReverser;
 use Pyz\Zed\HelloSpryker\HelloSprykerDependencyProvider;
-use Pyz\Zed\StringReverser\Business\StringReverserFacade;
 use Spryker\Zed\Kernel\Business\AbstractBusinessFactory;
 
 /**
@@ -19,7 +18,7 @@ use Spryker\Zed\Kernel\Business\AbstractBusinessFactory;
 class HelloSprykerBusinessFactory extends AbstractBusinessFactory
 {
     /**
-     * @return StringReverser
+     * @return \Pyz\Zed\HelloSpryker\Business\Model\StringReverser
      */
     public function createStringReverser()
     {
@@ -27,7 +26,7 @@ class HelloSprykerBusinessFactory extends AbstractBusinessFactory
     }
 
     /**
-     * @return StringReader
+     * @return \Pyz\Zed\HelloSpryker\Business\Model\StringReader
      */
     public function createStringReader()
     {
@@ -35,9 +34,8 @@ class HelloSprykerBusinessFactory extends AbstractBusinessFactory
     }
 
     /**
-     * @throws \Spryker\Zed\Kernel\Exception\Container\ContainerKeyNotFoundException
      *
-     * @return StringReverserFacade
+     * @return \Pyz\Zed\StringReverser\Business\StringReverserFacade
      */
     protected function getStringReverserFacade()
     {

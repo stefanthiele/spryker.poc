@@ -6,18 +6,15 @@
 
 namespace Pyz\Zed\HelloSpryker\Business\Model;
 
-
 use Generated\Shared\Transfer\HelloSprykerTransfer;
 use Orm\Zed\HelloSpryker\Persistence\PyzHelloSpryker;
 
 class StringReverser
 {
     /**
-     * @param HelloSprykerTransfer $helloSprykerTransfer
+     * @param \Generated\Shared\Transfer\HelloSprykerTransfer $helloSprykerTransfer
      *
-     * @throws \Propel\Runtime\Exception\PropelException
-     *
-     * @return HelloSprykerTransfer
+     * @return \Generated\Shared\Transfer\HelloSprykerTransfer
      */
     public function reverseString(HelloSprykerTransfer $helloSprykerTransfer)
     {
@@ -30,9 +27,7 @@ class StringReverser
     }
 
     /**
-     * @param HelloSprykerTransfer $helloSprykerTransfer
-     *
-     * @throws \Propel\Runtime\Exception\PropelException
+     * @param \Generated\Shared\Transfer\HelloSprykerTransfer $helloSprykerTransfer
      *
      * @return void
      */
