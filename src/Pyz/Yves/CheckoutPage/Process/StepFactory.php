@@ -1,21 +1,18 @@
 <?php
 
 /**
- * Copyright © 2016-present Spryker Systems GmbH. All rights reserved.
- * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ * This file is part of the Spryker Suite.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
 namespace Pyz\Yves\CheckoutPage\Process;
 
+use Pyz\Yves\CheckoutPage\Plugin\Provider\CheckoutPageControllerProvider;
 use Pyz\Yves\CheckoutPage\Process\Steps\VoucherStep;
 use Spryker\Yves\StepEngine\Process\StepCollection;
-use Pyz\Yves\CheckoutPage\Plugin\Provider\CheckoutPageControllerProvider;
 use SprykerShop\Yves\CheckoutPage\Process\StepFactory as SprykerShopStepFactory;
 use SprykerShop\Yves\HomePage\Plugin\Provider\HomePageControllerProvider;
 
-/**
- * @method \SprykerShop\Yves\CheckoutPage\CheckoutPageConfig getConfig()
- */
 class StepFactory extends SprykerShopStepFactory
 {
     /**
@@ -43,7 +40,7 @@ class StepFactory extends SprykerShopStepFactory
     }
 
     /**
-     * @return VoucherStep
+     * @return \Pyz\Yves\CheckoutPage\Process\Steps\VoucherStep
      */
     public function createVoucherStep()
     {
