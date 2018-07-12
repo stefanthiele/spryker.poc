@@ -62,7 +62,7 @@
         </transitions>
 
         <events>
-            <event name="pay" onEnter="true" />
+            <event name="pay" onEnter="true" command="Demo/Pay" />
             <event name="ship" manual="true" />
             <event name="return" manual="true" />
             <event name="refund" onEnter="true" />
