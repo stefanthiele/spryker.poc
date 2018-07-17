@@ -1,12 +1,17 @@
 <?php
 
-namespace Pyz\Client\SpecialOffers;
+/**
+ * This file is part of the Spryker Suite.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
+ */
+
+namespace Pyz\Client\PersonalizedProduct;
 
 use Spryker\Client\Catalog\Plugin\Elasticsearch\ResultFormatter\RawCatalogSearchResultFormatterPlugin;
 use Spryker\Client\Kernel\AbstractDependencyProvider;
 use Spryker\Client\Kernel\Container;
 
-class SpecialOffersDependencyProvider extends AbstractDependencyProvider
+class PersonalizedProductDependencyProvider extends AbstractDependencyProvider
 {
     const CLIENT_SEARCH = 'CLIENT_SEARCH';
     const CATALOG_SEARCH_RESULT_FORMATTER_PLUGINS = 'CATALOG_SEARCH_RESULT_FORMATTER_PLUGINS';
@@ -42,7 +47,7 @@ class SpecialOffersDependencyProvider extends AbstractDependencyProvider
     {
         $container[static::CATALOG_SEARCH_RESULT_FORMATTER_PLUGINS] = function () {
             return [
-                new RawCatalogSearchResultFormatterPlugin()
+                new RawCatalogSearchResultFormatterPlugin(),
             ];
         };
 

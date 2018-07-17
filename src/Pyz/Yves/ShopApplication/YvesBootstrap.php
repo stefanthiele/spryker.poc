@@ -8,7 +8,7 @@
 namespace Pyz\Yves\ShopApplication;
 
 use Pyz\Yves\ExampleProductSalePage\Plugin\Provider\ExampleProductSaleControllerProvider;
-use Pyz\Yves\SpecialOffers\Plugin\Provider\SpecialOffersControllerProvider;
+use Pyz\Yves\PersonalizedProduct\Plugin\Provider\PersonalizedProductControllerProvider;
 use Silex\Provider\FormServiceProvider;
 use Silex\Provider\HttpFragmentServiceProvider;
 use Silex\Provider\RememberMeServiceProvider;
@@ -207,7 +207,7 @@ class YvesBootstrap extends SprykerYvesBootstrap
             new CartToShoppingListWidgetControllerProvider($isSsl), #ShoppingListFeature
             new ShoppingListWidgetControllerProvider($isSsl), #ShoppingListFeature
             new CompanyUserInvitationPageControllerProvider($isSsl), #BulkImportCompanyUserInvitationsFeature
-            new SpecialOffersControllerProvider($isSsl),
+            new PersonalizedProductControllerProvider($isSsl),
         ];
     }
 }

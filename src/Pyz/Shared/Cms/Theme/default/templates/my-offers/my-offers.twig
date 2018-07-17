@@ -17,4 +17,7 @@
     <div class="box">
         {{ spyCms('content') | raw }}
     </div>
+    <div class="box">
+        {{ render(path('personalized-product-index', {'limit': 12})) }}
+    </div>
 {% endblock %}

@@ -1,27 +1,32 @@
 <?php
 
-namespace Pyz\Client\SpecialOffers;
+/**
+ * This file is part of the Spryker Suite.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
+ */
+
+namespace Pyz\Client\PersonalizedProduct;
 
 use Spryker\Client\Kernel\AbstractClient;
 
 /**
- * @method \Pyz\Client\SpecialOffers\SpecialOffersFactory getFactory()
+ * @method \Pyz\Client\PersonalizedProduct\PersonalizedproductFactory getFactory()
  */
-class SpecialOffersClient extends AbstractClient implements SpecialOffersClientInterface
+class PersonalizedProductClient extends AbstractClient implements PersonalizedProductClientInterface
 {
     /**
      * @param int $limit
-     *
-     * @throws \Spryker\Client\Kernel\Exception\Container\ContainerKeyNotFoundException
      *
      * @return array
      */
     public function getPersonalizedProducts($limit)
     {
-        $searchQuery = $this->getFactory()
+        $searchQuery = $this
+            ->getFactory()
             ->createPersonalizedProductsQueryPlugin($limit);
 
-        $searchQueryFromatters = $this->getFactory()
+        $searchQueryFromatters = $this
+            ->getFactory()
             ->getSearchQueryFormatters();
 
         $searchResult = $this->getFactory()

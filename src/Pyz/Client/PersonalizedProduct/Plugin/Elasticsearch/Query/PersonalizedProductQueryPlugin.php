@@ -1,6 +1,11 @@
 <?php
 
-namespace Pyz\Client\SpecialOffers\Plugin\Elasticsearch\Query;
+/**
+ * This file is part of the Spryker Suite.
+ * For full license information, please view the LICENSE file that was distributed with this source code.
+ */
+
+namespace Pyz\Client\PersonalizedProduct\Plugin\Elasticsearch\Query;
 
 use Elastica\Query;
 use Elastica\Query\BoolQuery;
@@ -11,7 +16,7 @@ use Generated\Shared\Search\PageIndexMap;
 use Spryker\Client\Search\Dependency\Plugin\QueryInterface;
 use Spryker\Shared\ProductSearch\ProductSearchConfig;
 
-class PersonalizedProductsQueryPlugin implements QueryInterface
+class PersonalizedProductQueryPlugin implements QueryInterface
 {
     /**
      * @var int
