@@ -13,12 +13,18 @@ use Symfony\Component\HttpFoundation\Request;
 class IndexController extends AbstractController
 {
     /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param Request $request
      *
-     * @return array|\Symfony\Component\HttpFoundation\RedirectResponse
+     * @return \Spryker\Yves\Kernel\View\View
      */
     public function indexAction(Request $request)
     {
-        return [];
+        $data = ['helloWorld' => 'Hello World!'];
+
+        return $this->view(
+            $data,
+            [],
+            '@HelloWorld/views/index/index.twig'
+        );
     }
 }
