@@ -7,6 +7,7 @@
 
 namespace Pyz\Client\Catalog;
 
+use Pyz\Client\Catalog\Plugin\Elasticsearch\QueryExpander\AttributeCartBasedBoostingQueryExpanderPlugin;
 use Spryker\Client\Catalog\CatalogDependencyProvider as SprykerCatalogDependencyProvider;
 use Spryker\Client\Catalog\Plugin\ConfigTransferBuilder\AscendingNameSortConfigTransferBuilderPlugin;
 use Spryker\Client\Catalog\Plugin\ConfigTransferBuilder\CategoryFacetConfigTransferBuilderPlugin;
@@ -19,6 +20,7 @@ use Spryker\Client\CatalogPriceProductConnector\Plugin\ConfigTransferBuilder\Pri
 use Spryker\Client\CatalogPriceProductConnector\Plugin\CurrencyAwareCatalogSearchResultFormatterPlugin;
 use Spryker\Client\CatalogPriceProductConnector\Plugin\CurrencyAwareSuggestionByTypeResultFormatter;
 use Spryker\Client\CatalogPriceProductConnector\Plugin\ProductPriceQueryExpanderPlugin;
+use Spryker\Client\Kernel\Container;
 use Spryker\Client\ProductLabelStorage\Plugin\ProductLabelFacetConfigTransferBuilderPlugin;
 use Spryker\Client\ProductReview\Plugin\RatingFacetConfigTransferBuilderPlugin;
 use Spryker\Client\ProductReview\Plugin\RatingSortConfigTransferBuilderPlugin;
@@ -28,7 +30,6 @@ use Spryker\Client\Search\Plugin\Elasticsearch\QueryExpander\IsActiveInDateRange
 use Spryker\Client\Search\Plugin\Elasticsearch\QueryExpander\IsActiveQueryExpanderPlugin;
 use Spryker\Client\Search\Plugin\Elasticsearch\QueryExpander\LocalizedQueryExpanderPlugin;
 use Spryker\Client\Search\Plugin\Elasticsearch\QueryExpander\PaginatedQueryExpanderPlugin;
-use Spryker\Client\Search\Plugin\Elasticsearch\QueryExpander\SortedCategoryQueryExpanderPlugin;
 use Spryker\Client\Search\Plugin\Elasticsearch\QueryExpander\SortedQueryExpanderPlugin;
 use Spryker\Client\Search\Plugin\Elasticsearch\QueryExpander\SpellingSuggestionQueryExpanderPlugin;
 use Spryker\Client\Search\Plugin\Elasticsearch\QueryExpander\StoreQueryExpanderPlugin;
@@ -42,6 +43,52 @@ use Spryker\Client\Search\Plugin\Elasticsearch\ResultFormatter\SuggestionByTypeR
 
 class CatalogDependencyProvider extends SprykerCatalogDependencyProvider
 {
+    const CLIENT_CART = 'cart client';
+    const CLIENT_PRODUCT_STORAGE = 'product storage client';
+
+    /**
+     * @param \Spryker\Client\Kernel\Container $container
+     *
+     * @return \Spryker\Client\Kernel\Container
+     */
+    public function provideServiceLayerDependencies(Container $container)
+    {
+        $container = parent::provideServiceLayerDependencies($container);
+
+        $container = $this->addCartClient($container);
+        $container = $this->addProductStorageClient($container);
+
+        return $container;
+    }
+
+    /**
+     * @param \Spryker\Client\Kernel\Container $container
+     *
+     * @return \Spryker\Client\Kernel\Container
+     */
+    protected function addCartClient(Container $container)
+    {
+        $container[static::CLIENT_CART] = function (Container $container) {
+            return $container->getLocator()->cart()->client();
+        };
+
+        return $container;
+    }
+
+    /**
+     * @param \Spryker\Client\Kernel\Container $container
+     *
+     * @return \Spryker\Client\Kernel\Container
+     */
+    protected function addProductStorageClient(Container $container)
+    {
+        $container[static::CLIENT_PRODUCT_STORAGE] = function (Container $container) {
+            return $container->getLocator()->productStorage()->client();
+        };
+
+        return $container;
+    }
+
     /**
      * @return \Spryker\Client\Catalog\Dependency\Plugin\FacetConfigTransferBuilderPluginInterface[]
      */
@@ -88,7 +135,7 @@ class CatalogDependencyProvider extends SprykerCatalogDependencyProvider
             new ProductPriceQueryExpanderPlugin(),
             new FacetQueryExpanderPlugin(),
             new SortedQueryExpanderPlugin(),
-            new SortedCategoryQueryExpanderPlugin(CategoryFacetConfigTransferBuilderPlugin::PARAMETER_NAME),
+            new AttributeCartBasedBoostingQueryExpanderPlugin(),
             new PaginatedQueryExpanderPlugin(),
             new SpellingSuggestionQueryExpanderPlugin(),
             new IsActiveQueryExpanderPlugin(),
