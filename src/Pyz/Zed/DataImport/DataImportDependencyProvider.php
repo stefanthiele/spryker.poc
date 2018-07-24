@@ -140,9 +140,6 @@ class DataImportDependencyProvider extends SprykerDataImportDependencyProvider
             new CompanyUnitAddressLabelRelationDataImportPlugin(),
             new BusinessOnBehalfCompanyUserDataImportPlugin(),
             new PriceProductDataImportPlugin(),
-            new MerchantDataImportPlugin(),
-            new MerchantRelationshipDataImportPlugin(),
-            new PriceProductMerchantRelationshipDataImportPlugin(),
         ];
     }
 
