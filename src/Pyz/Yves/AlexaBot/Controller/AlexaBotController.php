@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file is part of the Spryker Demoshop.
+ * This file is part of the Spryker Suite.
  * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
@@ -17,12 +17,9 @@ use Symfony\Component\HttpFoundation\Request;
 class AlexaBotController extends AbstractController
 {
     /**
-     * @param Request $request
+     * @param \Symfony\Component\HttpFoundation\Request $request
      *
-     * @throws \Spryker\Client\Kernel\Exception\Container\ContainerKeyNotFoundException
-     * @throws \Spryker\Shared\Kernel\Locale\LocaleNotFoundException
-     *
-     * @return JsonResponse
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
     public function productAction(Request $request)
     {
@@ -35,26 +32,22 @@ class AlexaBotController extends AbstractController
 
         return new JsonResponse(
             [
-                'response' => '', $response // TODO Product-3: return the response.
+                'response' => '', // TODO Product-3: return the response.
             ],
             200
         );
     }
 
     /**
-     * @param Request $request
+     * @param \Symfony\Component\HttpFoundation\Request $request
      *
-     * @throws \Spryker\Client\Kernel\Exception\Container\ContainerKeyNotFoundException
-     *
-     * @return JsonResponse
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
     public function cartAction(Request $request)
     {
         $variantName = $request->get('variant');
 
-        $isSuccess = $this
-            ->getClient()
-            ->addVariantToCart($variantName); // TODO Cart-1: call the client to add to cart.
+        $isSuccess = false; // TODO Cart-1: call the client using the method $this->getClient() and then add the variant to cart.
 
         $response = $isSuccess
             ? "Your order will be shipped with same minute delivery. Your payment method is a smile. To confirm your order say: Yes Spryker and smile. Do you confirm?"
@@ -69,17 +62,13 @@ class AlexaBotController extends AbstractController
     }
 
     /**
-     * @param Request $request
+     * @param \Symfony\Component\HttpFoundation\Request $request
      *
-     * @throws \Spryker\Client\Kernel\Exception\Container\ContainerKeyNotFoundException
-     *
-     * @return JsonResponse
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
     public function checkoutAndOrderAction(Request $request)
     {
-        $isSuccess = $this
-            ->getClient()
-            ->checkoutAndPlaceOrder(); // TODO CheckoutAndOrder-1: call the client to checkout and place the order.
+        $isSuccess = // TODO CheckoutAndOrder-1: call the client using the method $this->getClient() and then checkout and place the order.
 
         $response = $isSuccess
             ? "Your order is on its way. Enjoy it, and remember to smile!"

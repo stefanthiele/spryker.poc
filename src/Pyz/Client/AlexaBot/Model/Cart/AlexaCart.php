@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file is part of the Spryker Demoshop.
+ * This file is part of the Spryker Suite.
  * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
@@ -82,9 +82,7 @@ class AlexaCart implements AlexaCartInterface
     {
         $variantSku = $this->getVariantSku($variantName);
         $itemTransfer = $this->HydrateItemTransfer($variantSku);
-        $quoteTransfer = $this
-            ->cartClient
-            ->addItem($itemTransfer); // TODO Cart-2: call the addItem() method in the CartClient.
+        $quoteTransfer = null; // TODO Cart-2: add the item cart by calling the addItem() method from the CartClient.
 
         return $quoteTransfer;
     }
@@ -131,10 +129,6 @@ class AlexaCart implements AlexaCartInterface
     {
         $quoteSerialised = serialize($quoteTransfer);
 
-        // TODO Cart-3: write the quote transfer to the file session to be used by the checkout and order action.
-        $this->fileSession->write(
-            $this->alexaBotConfig->getCartSessionName(),
-            $quoteSerialised
-        );
+        // TODO Cart-3: write the serialized quote transfer to the file session using the FileSession. You need this in order to use the quote transfer later by the checkout-and-order action.
     }
 }

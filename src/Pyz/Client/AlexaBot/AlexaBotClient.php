@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file is part of the Spryker Demoshop.
+ * This file is part of the Spryker Suite.
  * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
@@ -17,9 +17,6 @@ class AlexaBotClient extends AbstractClient implements AlexaBotClientInterface
     /**
      * @param string $productName
      *
-     * @throws \Spryker\Client\Kernel\Exception\Container\ContainerKeyNotFoundException
-     * @throws \Spryker\Shared\Kernel\Locale\LocaleNotFoundException
-     *
      * @return string[]
      */
     public function getVariantsByProductName($productName)
@@ -32,8 +29,6 @@ class AlexaBotClient extends AbstractClient implements AlexaBotClientInterface
     /**
      * @param string $variantName
      *
-     * @throws \Spryker\Client\Kernel\Exception\Container\ContainerKeyNotFoundException
-     *
      * @return bool
      */
     public function addVariantToCart($variantName)
@@ -44,8 +39,6 @@ class AlexaBotClient extends AbstractClient implements AlexaBotClientInterface
     }
 
     /**
-     * @throws \Spryker\Client\Kernel\Exception\Container\ContainerKeyNotFoundException
-     *
      * @return bool
      */
     public function checkoutAndPlaceOrder()

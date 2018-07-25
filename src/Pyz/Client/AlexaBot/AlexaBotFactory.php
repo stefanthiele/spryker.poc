@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file is part of the Spryker Demoshop.
+ * This file is part of the Spryker Suite.
  * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
@@ -20,8 +20,6 @@ use Spryker\Client\Kernel\AbstractFactory;
 class AlexaBotFactory extends AbstractFactory
 {
     /**
-     * @throws \Spryker\Client\Kernel\Exception\Container\ContainerKeyNotFoundException
-     *
      * @return \Pyz\Client\AlexaBot\Model\Product\AlexaProduct
      */
     public function createAlexaProduct()
@@ -29,15 +27,12 @@ class AlexaBotFactory extends AbstractFactory
         return new AlexaProduct(
             $this->getConfig(),
             $this->getCatalogClient(),
-            // TODO Product-1: inject the product client.
-            $this->getProductStorageClient(),
+            // TODO Product-1: inject the product storage client using a method from this factory.
             $this->createFileSession()
         );
     }
 
     /**
-     * @throws \Spryker\Client\Kernel\Exception\Container\ContainerKeyNotFoundException
-     *
      * @return \Pyz\Client\AlexaBot\Model\Cart\AlexaCart
      */
     public function createAlexaCart()
@@ -51,8 +46,6 @@ class AlexaBotFactory extends AbstractFactory
     }
 
     /**
-     * @throws \Spryker\Client\Kernel\Exception\Container\ContainerKeyNotFoundException
-     *
      * @return \Pyz\Client\AlexaBot\Model\CheckoutAndOrder\AlexaCheckoutAndOrder
      */
     public function createAlexaCheckoutAndOrder()
@@ -83,8 +76,6 @@ class AlexaBotFactory extends AbstractFactory
     }
 
     /**
-     * @throws \Spryker\Client\Kernel\Exception\Container\ContainerKeyNotFoundException
-     *
      * @return \Spryker\Client\Catalog\CatalogClientInterface
      */
     public function getCatalogClient()
@@ -93,8 +84,6 @@ class AlexaBotFactory extends AbstractFactory
     }
 
     /**
-     * @throws \Spryker\Client\Kernel\Exception\Container\ContainerKeyNotFoundException
-     *
      * @return \Spryker\Client\ProductStorage\ProductStorageClientInterface
      */
     public function getProductStorageClient()
@@ -103,8 +92,6 @@ class AlexaBotFactory extends AbstractFactory
     }
 
     /**
-     * @throws \Spryker\Client\Kernel\Exception\Container\ContainerKeyNotFoundException
-     *
      * @return \Spryker\Client\Cart\CartClientInterface
      */
     public function getCartClient()
@@ -113,8 +100,6 @@ class AlexaBotFactory extends AbstractFactory
     }
 
     /**
-     * @throws \Spryker\Client\Kernel\Exception\Container\ContainerKeyNotFoundException
-     *
      * @return \Spryker\Client\Checkout\CheckoutClientInterface
      */
     public function getCheckoutClient()
@@ -123,8 +108,6 @@ class AlexaBotFactory extends AbstractFactory
     }
 
     /**
-     * @throws \Spryker\Client\Kernel\Exception\Container\ContainerKeyNotFoundException
-     *
      * @return \Spryker\Client\Calculation\CalculationClientInterface
      */
     public function getCalculationClient()

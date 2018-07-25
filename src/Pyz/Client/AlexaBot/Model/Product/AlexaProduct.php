@@ -1,6 +1,7 @@
 <?php
+
 /**
- * This file is part of the Spryker Demoshop.
+ * This file is part of the Spryker Suite.
  * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
@@ -10,7 +11,6 @@ use Pyz\Client\AlexaBot\AlexaBotConfig;
 use Pyz\Client\AlexaBot\Model\FileSession\FileSessionInterface;
 use Spryker\Client\Catalog\CatalogClientInterface;
 use Spryker\Client\Kernel\AbstractPlugin;
-use Spryker\Client\ProductStorage\ProductStorageClientInterface;
 use Spryker\Shared\Kernel\Store;
 
 class AlexaProduct extends AbstractPlugin implements AlexaProductInterface
@@ -27,11 +27,7 @@ class AlexaProduct extends AbstractPlugin implements AlexaProductInterface
      */
     private $catalogClient;
 
-    // TODO Product-1: inject the product client.
-    /**
-     * @var ProductStorageClientInterface
-     */
-    private $productStorageClient;
+    // TODO Product-1: inject the product storage client.
 
     /**
      * @var \Pyz\Client\AlexaBot\Model\FileSession\FileSessionInterface
@@ -41,28 +37,23 @@ class AlexaProduct extends AbstractPlugin implements AlexaProductInterface
     /**
      * @param \Pyz\Client\AlexaBot\AlexaBotConfig $alexaBotConfig
      * @param \Spryker\Client\Catalog\CatalogClientInterface $catalogClient
-     * TODO Product-1: inject the product client.
-     * @param ProductStorageClientInterface $productStorageClient
+     * TODO Product-1: inject the product storage client.
      * @param \Pyz\Client\AlexaBot\Model\FileSession\FileSessionInterface $fileSession
      */
     public function __construct(
         AlexaBotConfig $alexaBotConfig,
         CatalogClientInterface $catalogClient,
-        // TODO Product-1: inject the product client.
-        ProductStorageClientInterface $productStorageClient,
+        // TODO Product-1: inject the product storage client.
         FileSessionInterface $fileSession
     ) {
         $this->alexaBotConfig = $alexaBotConfig;
         $this->catalogClient = $catalogClient;
-        // TODO Product-1: inject the product client.
-        $this->productStorageClient = $productStorageClient;
+        // TODO Product-1: inject the product storage client.
         $this->fileSession = $fileSession;
     }
 
     /**
      * @param string $productName
-     *
-     * @throws \Spryker\Shared\Kernel\Locale\LocaleNotFoundException
      *
      * @return string[]
      */
@@ -77,8 +68,6 @@ class AlexaProduct extends AbstractPlugin implements AlexaProductInterface
     /**
      * @param int $abstractProductId
      * @param string $variantName
-     *
-     * @throws \Spryker\Shared\Kernel\Locale\LocaleNotFoundException
      *
      * @return string
      */
@@ -103,11 +92,7 @@ class AlexaProduct extends AbstractPlugin implements AlexaProductInterface
 
         $abstractProductId = $catalogResponse['suggestionByType']['product_abstract'][0]['id_product_abstract'];
 
-        // TODO Product-2: write the abstract product ID to the file session to use it later by the add to cart action.
-        $this->fileSession->write(
-            $this->alexaBotConfig->getProductSessionName(),
-            $abstractProductId
-        );
+        // TODO Product-2: write the abstract product ID to the file session using the FileSession. You need this in order to use the ID later by the add-to-cart action.
 
         return $abstractProductId;
     }
@@ -115,8 +100,6 @@ class AlexaProduct extends AbstractPlugin implements AlexaProductInterface
     /**
      * @param $abstractProductId
      * @param array $selectedAttributes
-     *
-     * @throws \Spryker\Shared\Kernel\Locale\LocaleNotFoundException
      *
      * @return \Generated\Shared\Transfer\ProductViewTransfer
      */
