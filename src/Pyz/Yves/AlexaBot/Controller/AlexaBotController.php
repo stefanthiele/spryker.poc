@@ -17,11 +17,12 @@ use Symfony\Component\HttpFoundation\Request;
 class AlexaBotController extends AbstractController
 {
     /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param Request $request
      *
      * @throws \Spryker\Client\Kernel\Exception\Container\ContainerKeyNotFoundException
+     * @throws \Spryker\Shared\Kernel\Locale\LocaleNotFoundException
      *
-     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     * @return JsonResponse
      */
     public function productAction(Request $request)
     {
@@ -34,22 +35,26 @@ class AlexaBotController extends AbstractController
 
         return new JsonResponse(
             [
-                'response' => '', // TODO Product-3: return the response.
+                'response' => '', $response // TODO Product-3: return the response.
             ],
             200
         );
     }
 
     /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param Request $request
      *
-     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     * @throws \Spryker\Client\Kernel\Exception\Container\ContainerKeyNotFoundException
+     *
+     * @return JsonResponse
      */
     public function cartAction(Request $request)
     {
         $variantName = $request->get('variant');
 
-        $isSuccess = false; // TODO Cart-1: call the client to add to cart.
+        $isSuccess = $this
+            ->getClient()
+            ->addVariantToCart($variantName); // TODO Cart-1: call the client to add to cart.
 
         $response = $isSuccess
             ? "Your order will be shipped with same minute delivery. Your payment method is a smile. To confirm your order say: Yes Spryker and smile. Do you confirm?"
@@ -64,13 +69,17 @@ class AlexaBotController extends AbstractController
     }
 
     /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param Request $request
      *
-     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     * @throws \Spryker\Client\Kernel\Exception\Container\ContainerKeyNotFoundException
+     *
+     * @return JsonResponse
      */
     public function checkoutAndOrderAction(Request $request)
     {
-        $isSuccess = false; // TODO CheckoutAndOrder-1: call the client to checkout and place the order.
+        $isSuccess = $this
+            ->getClient()
+            ->checkoutAndPlaceOrder(); // TODO CheckoutAndOrder-1: call the client to checkout and place the order.
 
         $response = $isSuccess
             ? "Your order is on its way. Enjoy it, and remember to smile!"

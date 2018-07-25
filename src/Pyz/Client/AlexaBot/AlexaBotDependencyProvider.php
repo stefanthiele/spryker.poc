@@ -13,8 +13,7 @@ use Spryker\Client\Kernel\Container;
 class AlexaBotDependencyProvider extends AbstractDependencyProvider
 {
     const CLIENT_CATALOG = 'CLIENT_CATALOG';
-    const CLIENT_PRODUCT = 'CLIENT_PRODUCT';
-    const CLIENT_PRICE_PRODUCT = 'CLIENT_PRICE_PRODUCT';
+    const CLIENT_PRODUCT_STORAGE = 'CLIENT_PRODUCT_STORAGE';
     const CLIENT_CART = 'CLIENT_CART';
     const CLIENT_CHECKOUT = 'CLIENT_CHECKOUT';
     const CLIENT_CALCULATION = 'CLIENT_CALCULATION';
@@ -27,8 +26,7 @@ class AlexaBotDependencyProvider extends AbstractDependencyProvider
     public function provideServiceLayerDependencies(Container $container)
     {
         $container = $this->addCatalogClient($container);
-        $container = $this->addProductClient($container);
-        $container = $this->addClientPriceProduct($container);
+        $container = $this->addProductStorageClient($container);
         $container = $this->addCartClient($container);
         $container = $this->addCheckoutClient($container);
         $container = $this->addCalculationClient($container);
@@ -55,24 +53,10 @@ class AlexaBotDependencyProvider extends AbstractDependencyProvider
      *
      * @return \Spryker\Client\Kernel\Container
      */
-    protected function addProductClient(Container $container)
+    protected function addProductStorageClient(Container $container)
     {
-        $container[static::CLIENT_PRODUCT] = function (Container $container) {
-            return $container->getLocator()->product()->client();
-        };
-
-        return $container;
-    }
-
-    /**
-     * @param \Spryker\Client\Kernel\Container $container
-     *
-     * @return \Spryker\Client\Kernel\Container
-     */
-    protected function addClientPriceProduct(Container $container)
-    {
-        $container[static::CLIENT_PRICE_PRODUCT] = function (Container $container) {
-            return $container->getLocator()->priceProduct()->client();
+        $container[static::CLIENT_PRODUCT_STORAGE] = function (Container $container) {
+            return $container->getLocator()->productStorage()->client();
         };
 
         return $container;

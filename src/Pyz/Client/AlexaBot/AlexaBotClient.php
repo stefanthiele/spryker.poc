@@ -18,6 +18,7 @@ class AlexaBotClient extends AbstractClient implements AlexaBotClientInterface
      * @param string $productName
      *
      * @throws \Spryker\Client\Kernel\Exception\Container\ContainerKeyNotFoundException
+     * @throws \Spryker\Shared\Kernel\Locale\LocaleNotFoundException
      *
      * @return string[]
      */

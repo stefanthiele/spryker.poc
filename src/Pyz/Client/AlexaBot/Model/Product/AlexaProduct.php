@@ -8,9 +8,10 @@ namespace Pyz\Client\AlexaBot\Model\Product;
 
 use Pyz\Client\AlexaBot\AlexaBotConfig;
 use Pyz\Client\AlexaBot\Model\FileSession\FileSessionInterface;
-use Pyz\Client\Catalog\CatalogClientInterface;
-use Pyz\Yves\Product\Mapper\StorageProductMapperInterface;
+use Spryker\Client\Catalog\CatalogClientInterface;
 use Spryker\Client\Kernel\AbstractPlugin;
+use Spryker\Client\ProductStorage\ProductStorageClientInterface;
+use Spryker\Shared\Kernel\Store;
 
 class AlexaProduct extends AbstractPlugin implements AlexaProductInterface
 {
@@ -22,16 +23,15 @@ class AlexaProduct extends AbstractPlugin implements AlexaProductInterface
     private $alexaBotConfig;
 
     /**
-     * @var \Pyz\Client\Catalog\CatalogClientInterface
+     * @var \Spryker\Client\Catalog\CatalogClientInterface
      */
     private $catalogClient;
 
     // TODO Product-1: inject the product client.
-
     /**
-     * @var \Pyz\Yves\Product\Mapper\StorageProductMapper
+     * @var ProductStorageClientInterface
      */
-    private $storageProductMapper;
+    private $productStorageClient;
 
     /**
      * @var \Pyz\Client\AlexaBot\Model\FileSession\FileSessionInterface
@@ -40,41 +40,45 @@ class AlexaProduct extends AbstractPlugin implements AlexaProductInterface
 
     /**
      * @param \Pyz\Client\AlexaBot\AlexaBotConfig $alexaBotConfig
-     * @param \Pyz\Client\Catalog\CatalogClientInterface $catalogClient
+     * @param \Spryker\Client\Catalog\CatalogClientInterface $catalogClient
      * TODO Product-1: inject the product client.
-     * @param \Pyz\Yves\Product\Mapper\StorageProductMapperInterface $storageProductMapper
+     * @param ProductStorageClientInterface $productStorageClient
      * @param \Pyz\Client\AlexaBot\Model\FileSession\FileSessionInterface $fileSession
      */
     public function __construct(
         AlexaBotConfig $alexaBotConfig,
         CatalogClientInterface $catalogClient,
         // TODO Product-1: inject the product client.
-        StorageProductMapperInterface $storageProductMapper,
+        ProductStorageClientInterface $productStorageClient,
         FileSessionInterface $fileSession
     ) {
         $this->alexaBotConfig = $alexaBotConfig;
         $this->catalogClient = $catalogClient;
         // TODO Product-1: inject the product client.
-        $this->storageProductMapper = $storageProductMapper;
+        $this->productStorageClient = $productStorageClient;
         $this->fileSession = $fileSession;
     }
 
     /**
      * @param string $productName
      *
+     * @throws \Spryker\Shared\Kernel\Locale\LocaleNotFoundException
+     *
      * @return string[]
      */
     public function getVariantsByProductName($productName)
     {
         $abstractProductId = $this->getAbstractIdByNameAndWriteToSession($productName);
-        $storageProductTransfer = $this->getStorageProduct($abstractProductId);
+        $productViewTransfer = $this->getStorageProduct($abstractProductId);
 
-        return $storageProductTransfer->getSuperAttributes()[static::VARIANT_ATTRIBUTE_NAME];
+        return $productViewTransfer->getAttributeMap()->getSuperAttributes()[static::VARIANT_ATTRIBUTE_NAME];
     }
 
     /**
      * @param int $abstractProductId
      * @param string $variantName
+     *
+     * @throws \Spryker\Shared\Kernel\Locale\LocaleNotFoundException
      *
      * @return string
      */
@@ -100,26 +104,41 @@ class AlexaProduct extends AbstractPlugin implements AlexaProductInterface
         $abstractProductId = $catalogResponse['suggestionByType']['product_abstract'][0]['id_product_abstract'];
 
         // TODO Product-2: write the abstract product ID to the file session to use it later by the add to cart action.
+        $this->fileSession->write(
+            $this->alexaBotConfig->getProductSessionName(),
+            $abstractProductId
+        );
 
         return $abstractProductId;
     }
 
     /**
-     * @param int $abstractProductId
+     * @param $abstractProductId
      * @param array $selectedAttributes
      *
-     * @return \Generated\Shared\Transfer\StorageProductTransfer
+     * @throws \Spryker\Shared\Kernel\Locale\LocaleNotFoundException
+     *
+     * @return \Generated\Shared\Transfer\ProductViewTransfer
      */
     private function getStorageProduct($abstractProductId, $selectedAttributes = [])
     {
+        $localeName = Store::getInstance()->getCurrentLocale();
+
         $productData = $this
-            ->productClient
-            ->getProductAbstractFromStorageByIdForCurrentLocale($abstractProductId);
+            ->productStorageClient
+            ->getProductAbstractStorageData(
+                $abstractProductId,
+                $localeName
+            );
 
-        $storageProductTransfer = $this
-            ->storageProductMapper
-            ->mapStorageProduct($productData, $selectedAttributes);
+        $productViewTransfer = $this
+            ->productStorageClient
+            ->mapProductStorageData(
+                $productData,
+                $localeName,
+                $selectedAttributes
+            );
 
-        return $storageProductTransfer;
+        return $productViewTransfer;
     }
 }

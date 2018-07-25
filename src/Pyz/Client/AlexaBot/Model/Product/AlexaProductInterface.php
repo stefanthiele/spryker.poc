@@ -20,7 +20,7 @@ interface AlexaProductInterface
      * @param int $abstractProductId
      * @param string $variantName
      *
-     * @return mixed
+     * @return string
      */
     public function getVariantSkuByAbstractProductIdAndVariantName($abstractProductId, $variantName);
 }

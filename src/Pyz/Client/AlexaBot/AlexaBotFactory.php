@@ -12,8 +12,6 @@ use Pyz\Client\AlexaBot\Model\CheckoutAndOrder\AlexaCheckoutAndOrder;
 use Pyz\Client\AlexaBot\Model\CheckoutAndOrder\OrderHydrator;
 use Pyz\Client\AlexaBot\Model\FileSession\FileSession;
 use Pyz\Client\AlexaBot\Model\Product\AlexaProduct;
-use Pyz\Yves\Product\Mapper\AttributeVariantMapper;
-use Pyz\Yves\Product\Mapper\StorageProductMapper;
 use Spryker\Client\Kernel\AbstractFactory;
 
 /**
@@ -32,7 +30,7 @@ class AlexaBotFactory extends AbstractFactory
             $this->getConfig(),
             $this->getCatalogClient(),
             // TODO Product-1: inject the product client.
-            $this->createStorageProductMapper(),
+            $this->getProductStorageClient(),
             $this->createFileSession()
         );
     }
@@ -63,8 +61,6 @@ class AlexaBotFactory extends AbstractFactory
             $this->getConfig(),
             $this->getCheckoutClient(),
             $this->getCalculationClient(),
-            $this->getProductClient(),
-            $this->createStorageProductMapper(),
             $this->createOrderHydrator(),
             $this->createFileSession()
         );
@@ -89,7 +85,7 @@ class AlexaBotFactory extends AbstractFactory
     /**
      * @throws \Spryker\Client\Kernel\Exception\Container\ContainerKeyNotFoundException
      *
-     * @return \Pyz\Client\Catalog\CatalogClientInterface
+     * @return \Spryker\Client\Catalog\CatalogClientInterface
      */
     public function getCatalogClient()
     {
@@ -99,21 +95,11 @@ class AlexaBotFactory extends AbstractFactory
     /**
      * @throws \Spryker\Client\Kernel\Exception\Container\ContainerKeyNotFoundException
      *
-     * @return \Spryker\Client\Product\ProductClientInterface
+     * @return \Spryker\Client\ProductStorage\ProductStorageClientInterface
      */
-    public function getProductClient()
+    public function getProductStorageClient()
     {
-        return $this->getProvidedDependency(AlexaBotDependencyProvider::CLIENT_PRODUCT);
-    }
-
-    /**
-     * @throws \Spryker\Client\Kernel\Exception\Container\ContainerKeyNotFoundException
-     *
-     * @return \Spryker\Client\PriceProduct\PriceProductClientInterface
-     */
-    protected function getPriceProductClient()
-    {
-        return $this->getProvidedDependency(AlexaBotDependencyProvider::CLIENT_PRICE_PRODUCT);
+        return $this->getProvidedDependency(AlexaBotDependencyProvider::CLIENT_PRODUCT_STORAGE);
     }
 
     /**
@@ -144,28 +130,5 @@ class AlexaBotFactory extends AbstractFactory
     public function getCalculationClient()
     {
         return $this->getProvidedDependency(AlexaBotDependencyProvider::CLIENT_CALCULATION);
-    }
-
-    /**
-     * @throws \Spryker\Client\Kernel\Exception\Container\ContainerKeyNotFoundException
-     *
-     * @return \Pyz\Yves\Product\Mapper\StorageProductMapper
-     */
-    public function createStorageProductMapper()
-    {
-        return new StorageProductMapper(
-            $this->createAttributeVariantMapper(),
-            $this->getPriceProductClient()
-        );
-    }
-
-    /**
-     * @throws \Spryker\Client\Kernel\Exception\Container\ContainerKeyNotFoundException
-     *
-     * @return \Pyz\Yves\Product\Mapper\AttributeVariantMapper
-     */
-    public function createAttributeVariantMapper()
-    {
-        return new AttributeVariantMapper($this->getProductClient());
     }
 }
