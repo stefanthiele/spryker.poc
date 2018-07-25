@@ -1,6 +1,7 @@
 <?php
+
 /**
- * This file is part of the Spryker Demoshop.
+ * This file is part of the Spryker Suite.
  * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
@@ -29,7 +30,7 @@ class AlexaProduct extends AbstractPlugin implements AlexaProductInterface
 
     // TODO Product-1: inject the product client.
     /**
-     * @var ProductStorageClientInterface
+     * @var \Spryker\Client\ProductStorage\ProductStorageClientInterface
      */
     private $productStorageClient;
 
@@ -42,7 +43,7 @@ class AlexaProduct extends AbstractPlugin implements AlexaProductInterface
      * @param \Pyz\Client\AlexaBot\AlexaBotConfig $alexaBotConfig
      * @param \Spryker\Client\Catalog\CatalogClientInterface $catalogClient
      * TODO Product-1: inject the product client.
-     * @param ProductStorageClientInterface $productStorageClient
+     * @param \Spryker\Client\ProductStorage\ProductStorageClientInterface $productStorageClient
      * @param \Pyz\Client\AlexaBot\Model\FileSession\FileSessionInterface $fileSession
      */
     public function __construct(
@@ -62,8 +63,6 @@ class AlexaProduct extends AbstractPlugin implements AlexaProductInterface
     /**
      * @param string $productName
      *
-     * @throws \Spryker\Shared\Kernel\Locale\LocaleNotFoundException
-     *
      * @return string[]
      */
     public function getVariantsByProductName($productName)
@@ -77,8 +76,6 @@ class AlexaProduct extends AbstractPlugin implements AlexaProductInterface
     /**
      * @param int $abstractProductId
      * @param string $variantName
-     *
-     * @throws \Spryker\Shared\Kernel\Locale\LocaleNotFoundException
      *
      * @return string
      */
@@ -115,8 +112,6 @@ class AlexaProduct extends AbstractPlugin implements AlexaProductInterface
     /**
      * @param $abstractProductId
      * @param array $selectedAttributes
-     *
-     * @throws \Spryker\Shared\Kernel\Locale\LocaleNotFoundException
      *
      * @return \Generated\Shared\Transfer\ProductViewTransfer
      */

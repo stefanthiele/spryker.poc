@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file is part of the Spryker Demoshop.
+ * This file is part of the Spryker Suite.
  * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
@@ -17,12 +17,9 @@ use Symfony\Component\HttpFoundation\Request;
 class AlexaBotController extends AbstractController
 {
     /**
-     * @param Request $request
+     * @param \Symfony\Component\HttpFoundation\Request $request
      *
-     * @throws \Spryker\Client\Kernel\Exception\Container\ContainerKeyNotFoundException
-     * @throws \Spryker\Shared\Kernel\Locale\LocaleNotFoundException
-     *
-     * @return JsonResponse
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
     public function productAction(Request $request)
     {
@@ -35,18 +32,16 @@ class AlexaBotController extends AbstractController
 
         return new JsonResponse(
             [
-                'response' => '', $response // TODO Product-3: return the response.
+                'response' => '', $response, // TODO Product-3: return the response.
             ],
             200
         );
     }
 
     /**
-     * @param Request $request
+     * @param \Symfony\Component\HttpFoundation\Request $request
      *
-     * @throws \Spryker\Client\Kernel\Exception\Container\ContainerKeyNotFoundException
-     *
-     * @return JsonResponse
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
     public function cartAction(Request $request)
     {
@@ -69,11 +64,9 @@ class AlexaBotController extends AbstractController
     }
 
     /**
-     * @param Request $request
+     * @param \Symfony\Component\HttpFoundation\Request $request
      *
-     * @throws \Spryker\Client\Kernel\Exception\Container\ContainerKeyNotFoundException
-     *
-     * @return JsonResponse
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
     public function checkoutAndOrderAction(Request $request)
     {

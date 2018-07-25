@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file is part of the Spryker Demoshop.
+ * This file is part of the Spryker Suite.
  * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
@@ -20,7 +20,6 @@ use Spryker\Client\Kernel\AbstractFactory;
 class AlexaBotFactory extends AbstractFactory
 {
     /**
-     * @throws \Spryker\Client\Kernel\Exception\Container\ContainerKeyNotFoundException
      *
      * @return \Pyz\Client\AlexaBot\Model\Product\AlexaProduct
      */
@@ -36,7 +35,6 @@ class AlexaBotFactory extends AbstractFactory
     }
 
     /**
-     * @throws \Spryker\Client\Kernel\Exception\Container\ContainerKeyNotFoundException
      *
      * @return \Pyz\Client\AlexaBot\Model\Cart\AlexaCart
      */
@@ -51,7 +49,6 @@ class AlexaBotFactory extends AbstractFactory
     }
 
     /**
-     * @throws \Spryker\Client\Kernel\Exception\Container\ContainerKeyNotFoundException
      *
      * @return \Pyz\Client\AlexaBot\Model\CheckoutAndOrder\AlexaCheckoutAndOrder
      */
@@ -83,7 +80,6 @@ class AlexaBotFactory extends AbstractFactory
     }
 
     /**
-     * @throws \Spryker\Client\Kernel\Exception\Container\ContainerKeyNotFoundException
      *
      * @return \Spryker\Client\Catalog\CatalogClientInterface
      */
@@ -93,7 +89,6 @@ class AlexaBotFactory extends AbstractFactory
     }
 
     /**
-     * @throws \Spryker\Client\Kernel\Exception\Container\ContainerKeyNotFoundException
      *
      * @return \Spryker\Client\ProductStorage\ProductStorageClientInterface
      */
@@ -103,7 +98,6 @@ class AlexaBotFactory extends AbstractFactory
     }
 
     /**
-     * @throws \Spryker\Client\Kernel\Exception\Container\ContainerKeyNotFoundException
      *
      * @return \Spryker\Client\Cart\CartClientInterface
      */
@@ -113,7 +107,6 @@ class AlexaBotFactory extends AbstractFactory
     }
 
     /**
-     * @throws \Spryker\Client\Kernel\Exception\Container\ContainerKeyNotFoundException
      *
      * @return \Spryker\Client\Checkout\CheckoutClientInterface
      */
@@ -123,7 +116,6 @@ class AlexaBotFactory extends AbstractFactory
     }
 
     /**
-     * @throws \Spryker\Client\Kernel\Exception\Container\ContainerKeyNotFoundException
      *
      * @return \Spryker\Client\Calculation\CalculationClientInterface
      */

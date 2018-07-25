@@ -1,6 +1,7 @@
 <?php
+
 /**
- * This file is part of the Spryker Demoshop.
+ * This file is part of the Spryker Suite.
  * For full license information, please view the LICENSE file that was distributed with this source code.
  */
 
@@ -10,7 +11,6 @@ use Pyz\Client\AlexaBot\AlexaBotConfig;
 use Pyz\Client\AlexaBot\Model\FileSession\FileSessionInterface;
 use Spryker\Client\Calculation\CalculationClientInterface;
 use Spryker\Client\Checkout\CheckoutClientInterface;
-use Spryker\Client\Product\ProductClientInterface;
 
 class AlexaCheckoutAndOrder implements AlexaCheckoutAndOrderInterface
 {
@@ -26,7 +26,7 @@ class AlexaCheckoutAndOrder implements AlexaCheckoutAndOrderInterface
     private $checkoutClient;
 
     /**
-     * @var CalculationClientInterface
+     * @var \Spryker\Client\Calculation\CalculationClientInterface
      */
     private $calculationClient;
 
