@@ -16,7 +16,7 @@ export default class NewComponentCounter extends Component {
     // this is safe for DOM manipolation
     // you can use every other callback defined by webcomponent standard (https://developer.mozilla.org/en-US/docs/Web/Web_Components)
     protected readyCallback(): void {
-        this.counter = <HTMLElement>document.querySelector(`.${this.jsName}__counter`);
+        this.counter = <HTMLElement>this.querySelector(`.${this.jsName}__counter`);
         this.elements = <HTMLElement[]>Array.from(document.querySelectorAll(this.elementSelector));
         this.count();
     }
