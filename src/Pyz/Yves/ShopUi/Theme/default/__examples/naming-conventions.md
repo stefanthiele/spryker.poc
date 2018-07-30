@@ -53,6 +53,10 @@ Let's explain some rules:
 
 Naming conventions for variables/functions dependes on the technology:
 
-- twig: everything related to atomic frontend follows *camelCase*
-- sass: it follows *kebab-case*
-- typescript: it follows *camelCase*
+- twig: everything related to atomic frontend follows *camelCase* (please refer to how-a-component-works for  more details about conventions)
+- sass: it follows *kebab-case*, implements BEM methodology with the following syntax:
+    - block: `.component-name`
+    - element: `.component-name__element`
+    - modifier: `.component-name--modifier` or `.component-name__element--modifier`
+    - as block modfiers are the only parameter we can use to customise a component when using it (include or embed), sometimes in our code you'll find open violations of BEM as some block modifiers might be in cascade with elements in order to customise them.
+- typescript: it follows *camelCase* (please refer to `new-component-counter.ts` molecule for  more details about conventions)

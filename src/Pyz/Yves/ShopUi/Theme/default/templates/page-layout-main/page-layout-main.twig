@@ -1,3 +1,13 @@
+{#
+    This is an example for page-layout-main customisation.
+    Twig cannot be extended, but must be owned.
+    So this file is placed in "the same position" (folder structure is the same - look at twig docs for more)
+    as the spryker-shop one, therefore the former overrides the latter.
+
+    Copy-paste the code from "spryker-shop page-layout-main" to have the strucure and customise it.
+    Replace this content with your own one to change it completely.
+#}
+
 {% extends template('page-blank') %}
 
 {%- block class -%}js-page-layout-main__side-drawer-container{%- endblock -%}
@@ -8,7 +18,9 @@
     {% endblock %}
 
     {% block sidebar %}
-        {# using a new component based on an existing one #}
+        {#
+            using a new component based on an existing one
+        #}
         {% include organism('new-existing-component-side-drawer') with {
             class: 'is-hidden-lg-xl',
             attributes: {
@@ -51,7 +63,9 @@
         {% endblock %}
 
         <main>
-            {# using a new component #}
+            {#
+                using a new component
+            #}
             {% include molecule('new-component-counter') with {
                 modifiers: ['big'],
                 data: {
